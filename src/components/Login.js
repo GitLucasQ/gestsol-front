@@ -25,8 +25,10 @@ export default function Login({ setToken }) {
     const loginUser = async () => {
         await axios.post("http://localhost:5050/user/login", { username: username, password: password })
             .then((response) => {
-                console.log(response.data.usuario[0].ID_USUARIO)
-                const id = { "token": response.data.usuario[0].TIPO_USUARIO }
+                const id = {
+                    "token": response.data.usuario[0].TIPO_USUARIO,
+                    "usuario": response.data.usuario[0].ID_USUARIO
+                }
                 setToken(id)
             })
             .catch((error) => {

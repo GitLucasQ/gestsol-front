@@ -4,6 +4,7 @@ import Login from './components/Login'
 import Asesor from './components/Asesor'
 import PageNotFound from './components/PageNotFound';
 import Dashboard from './components/Dashboard';
+import RegisterUser from './components/RegisterUser';
 import useToken from './hooks/useToken'
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
@@ -45,6 +46,9 @@ function App() {
             </Route>
             <Route exact path="/dashboard">
               <Dashboard />
+            </Route>
+            <Route exact path="/registroUsuario">
+              <RegisterUser />
             </Route>
             <Route component={PageNotFound} />
           </Switch>

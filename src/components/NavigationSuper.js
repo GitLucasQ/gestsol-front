@@ -13,9 +13,14 @@ const NavigationSuper = () => {
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <Link className="navbar-brand" to="/user">
-                            Salir
+                        <Link className="navbar-brand" to="/registroUsuario">
+                            Registrar usuario
                             </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="navbar-brand" to="/">
+                            Salir
+                        </Link>
                     </li>
                 </ul>
             </div>

@@ -46,8 +46,8 @@ export default class RegisterUser extends Component {
         ],
         nombres: '',
         apellidos: '',
-        area: '',
-        tipo: '',
+        area: 'Sistemas',
+        tipo: 'Técnico',
         listaUsuarios: []
     }
 
@@ -58,7 +58,6 @@ export default class RegisterUser extends Component {
     getUsers = async () => {
         const resp = await axios.get('http://localhost:5050/listarUsuarios')
         this.setState({ listaUsuarios: resp.data.usuarios })
-        console.log(this.state.listaUsuarios)
     }
 
     inputHandler = e => {
@@ -73,13 +72,14 @@ export default class RegisterUser extends Component {
     registroUsuario = async () => {
         await axios.post('http://localhost:5050/registroUsuario',
             {
-                nombres: this.state.nombres,
-                apellidos: this.state.apellidos,
+                nombres: this.state.nombres[0],
+                apellidos: this.state.apellidos[0],
                 area: this.state.area,
                 tipo: this.state.tipo
             })
             .then((response) => {
                 this.notifySuccess('Registro exitoso')
+                this.getUsers();
             })
             .catch((error) => {
                 this.notifyError('Error al registrar el usuario')
@@ -113,7 +113,7 @@ export default class RegisterUser extends Component {
                                         <label>Apellidos</label>
                                         <input
                                             type="text"
-                                            name="apelidos"
+                                            name="apellidos"
                                             className="form-control"
                                             value={this.state.apellidos}
                                             placeholder="Ingrese apellidos"
@@ -163,8 +163,8 @@ export default class RegisterUser extends Component {
                             </form>
                         </div>
                         <div className="col">
-                            <table className="table">
-                                <thead className="thead-dark">
+                            <table className="table table-hover">
+                                <thead className="thead-usuarios">
                                     <th>NOMBRES</th>
                                     <th>APELLIDOS</th>
                                     <th>ÁREA</th>

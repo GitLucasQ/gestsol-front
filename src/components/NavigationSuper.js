@@ -1,9 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+
+import '../assets/css/supervisor.css'
+
 const NavigationSuper = () => {
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark" id="navsuper">
             <Link className="navbar-brand" to="/">
                 Ver solicitudes
                 </Link>

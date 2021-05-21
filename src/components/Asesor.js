@@ -70,10 +70,19 @@ const Dashboard = () => {
             })
             .then((reponse) => {
                 notifySuccess("Registro exitoso")
+                limpiarCampos();
             })
             .catch((error) => {
                 notify("Error al registar la consulta")
             })
+    }
+
+    const limpiarCampos = () => {
+        setNombreCliente('');
+        setRuc('');
+        setTelefonoCliente('');
+        setCorreoCliente('');
+        setDescripcionConsulta('');
     }
 
     return (
@@ -89,6 +98,7 @@ const Dashboard = () => {
                                     <label>Nombre del cliente</label>
                                     <input
                                         type="text"
+                                        value={nombreCliente}
                                         className="form-control"
                                         placeholder="Ingrese nombres"
                                         onChange={e => setNombreCliente(e.target.value)} />
@@ -97,6 +107,7 @@ const Dashboard = () => {
                                     <label>Nro. Documento</label>
                                     <input
                                         type="text"
+                                        value={ruc}
                                         className="form-control"
                                         placeholder="Ingrese documento"
                                         onChange={e => setRuc(e.target.value)} />
@@ -108,6 +119,7 @@ const Dashboard = () => {
                                     <label>Teléfono / celular</label>
                                     <input
                                         type="number"
+                                        value={telefonoCliente}
                                         className="form-control"
                                         placeholder="Ingrese teléfono"
                                         onChange={e => setTelefonoCliente(e.target.value)} />
@@ -116,6 +128,7 @@ const Dashboard = () => {
                                     <label>Correo electrónico</label>
                                     <input
                                         type="text"
+                                        value={correoCliente}
                                         className="form-control"
                                         placeholder="Ingrese correo"
                                         onChange={e => setCorreoCliente(e.target.value)} />
@@ -139,6 +152,7 @@ const Dashboard = () => {
                                 <label>Descripción de la consulta</label>
                                 <textarea
                                     type="text"
+                                    value={descripcionConsulta}
                                     className="form-control"
                                     rows="5"
                                     placeholder="Ingrese documento"

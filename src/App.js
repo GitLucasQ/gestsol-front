@@ -36,7 +36,7 @@ function App() {
       </div>
     );
   }
-  else if (token === 1) {
+  else if (token === 1 || token === 5) {
     return (
       <div className="App container-fluid vh-100">
         <Router>

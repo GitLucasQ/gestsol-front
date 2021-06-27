@@ -13,8 +13,8 @@ export default class dashboard extends Component {
         this.getSolicitudes();
     }
 
-    getSolicitudes = async () => {
-        const resp = await axios.get('http://localhost:5050/ticket/listTickets')
+    getSolicitudes = async () => {        
+        const resp = await axios.post('http://localhost:5050/ticket/listTickets', {id_usuario: JSON.parse(sessionStorage.getItem('token')).token})
         this.setState({ listaConsultas: resp.data.tickets })
     }
 
@@ -29,16 +29,18 @@ export default class dashboard extends Component {
                             <thead className="thead-usuarios">
                                 <th>ID</th>
                                 <th>NOMBRE</th>
-                                <th>N° DOCUMENTO</th>
+                                <th>ESTADO</th>
+                                <th>REGISTRADO POR</th>
                                 <th>DESCRIPCIÓN</th>
                             </thead>
                             <tbody>
                                 {
                                     this.state.listaConsultas.map(ticket =>
                                         <tr>
-                                            <td>{ticket.nro_ticket}</td>
+                                            <td>{ticket.nro_ticket}</td>                                            
                                             <td>{ticket.nombre_cliente}</td>
-                                            <td>{ticket.nro_doc}</td>
+                                            <td>{ticket.estado}</td>
+                                            <td>{ticket.nombres}</td>
                                             <td>{ticket.descripcion}</td>
                                         </tr>
                                     )

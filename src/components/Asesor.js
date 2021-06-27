@@ -46,7 +46,7 @@ const Dashboard = () => {
         return userToken?.usuario
     };
     const [idUsuario, setIdUsuario] = useState(getIdUsuario());
-    console.log(idUsuario)
+
 
     const handleSelect = e => {
         setArea(e.target.value)
@@ -54,7 +54,12 @@ const Dashboard = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        registroConsulta();
+        if (validarCampos() && validarEmail()) {
+            registroConsulta();
+        }
+        else {
+            notify("Verifique que los campos sean correctos")
+        }
     }
 
     const registroConsulta = async () => {
@@ -85,6 +90,25 @@ const Dashboard = () => {
         setDescripcionConsulta('');
     }
 
+    var validarCampos = () => {
+        return (nombreCliente.toString().trim().length > 0 &&
+            ruc.toString().trim().length > 0 &&
+            telefonoCliente.toString().trim().length > 0 &&
+            correoCliente.toString().trim().length > 0 &&
+            descripcionConsulta.toString().trim().length > 0)
+    }
+
+    var validarEmail = () => {
+        var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+
+        if (!pattern.test(correoCliente)) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
     return (
         <div>
             <ToastContainer />
@@ -106,7 +130,7 @@ const Dashboard = () => {
                                 <div className="form-group col-6">
                                     <label>Nro. Documento</label>
                                     <input
-                                        type="text"
+                                        type="number"
                                         value={ruc}
                                         className="form-control"
                                         placeholder="Ingrese documento"

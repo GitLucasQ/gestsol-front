@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react'
+import React, { Component } from 'react'
 import axios from 'axios'
 
 import { toast, ToastContainer } from 'react-toastify'

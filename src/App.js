@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Login from './components/Login'
 import Asesor from './components/Asesor'
@@ -19,7 +19,7 @@ function App() {
     return <Login setToken={setToken} />
   }
 
-  if (token == 2) {
+  if (token === 2) {
     return (
       <div className="App container-fluid vh-100">
         <Router>
@@ -36,7 +36,7 @@ function App() {
       </div>
     );
   }
-  else if (token == 1) {
+  else if (token === 1) {
     return (
       <div className="App container-fluid vh-100">
         <Router>

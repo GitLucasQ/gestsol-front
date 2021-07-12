@@ -56,7 +56,8 @@ export default class RegisterUser extends Component {
     }
 
     getUsers = async () => {
-        const resp = await axios.get('http://localhost:5050/listarUsuarios')
+        const resp = await axios.post('http://localhost:5050/listarUsuarios',
+            { idUsuario: JSON.parse(sessionStorage.getItem('token')).token })
         this.setState({ listaUsuarios: resp.data.usuarios })
     }
 

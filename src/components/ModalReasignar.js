@@ -1,17 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
+import $ from 'jquery'
 
 
-const getListaPersonas = () => {
-    console.log('entra')
-}
+const ModalReasignar = ({ nroTicket, nombresPersona, equipo }) => {
 
-const ModalReasignar = ({ nroTicket }) => {
+    const [personaAsignar, setPersonaAsignar] = useState('')
+
+    const handleSelect = e => {
+        setPersonaAsignar(e.target.value)
+    }
+
+    const reasignarTicket = e => {
+        e.preventDefault()
+        axios.put('http://localhost:5050/ticket/reasignarTicket',
+            { id_usuario_asignado: personaAsignar, nro_ticket: nroTicket })
+        window.location.href = '/'
+    }
 
     return (
         <div className="modal fade"
             id="modalReasignar"
-            tabindex="-1"
+            tabIndex="-1"
             aria-labelledby="modalReasignarLabel"
             aria-hidden="true">
             <div className="modal-dialog">
@@ -22,17 +32,36 @@ const ModalReasignar = ({ nroTicket }) => {
                             id="modalDetalleLabel">
                             Reasignar ticket
                         </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div className="modal-body" style={{ textAlign: "left" }}>
-                        <p>{nroTicket}</p>
-                        <button
-                            className="btn btn-success"
-                        >
-                            Confirmar
-                        </button>
+                        <p>Actualmente el ticket {nroTicket} está asignado a <strong>{nombresPersona}</strong></p>
+                        <p>Seleccione una persona a quien se le reasignará el ticket</p>
+                        <form onSubmit={reasignarTicket}>
+                            <div className="input-group">
+                                <select
+                                    className="custom-select"
+                                    onChange={handleSelect}>
+                                    {
+                                        equipo.map(persona =>
+                                            <option key={persona.id_usuario} value={persona.id_usuario}>
+                                                {persona.nombres + ' ' + persona.apellidos}
+                                            </option>
+                                        )
+                                    }
+                                </select>
+                                <div className="input-group-append">
+                                    <button
+                                        type="submit"
+                                        className="btn btn-success"
+                                    >
+                                        Confirmar
+                                </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

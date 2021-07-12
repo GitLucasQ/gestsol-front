@@ -5,7 +5,7 @@ const Modal = ({ ticket }) => {
     return (
         <div className="modal fade"
             id="modalDetalle"
-            tabindex="-1"
+            tabIndex="-1"
             aria-labelledby="modalDetalleLabel"
             aria-hidden="true">
             <div className="modal-dialog">
@@ -16,7 +16,7 @@ const Modal = ({ ticket }) => {
                             id="modalDetalleLabel">
                             Detalle del ticket
                         </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>

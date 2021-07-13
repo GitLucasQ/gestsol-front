@@ -21,6 +21,11 @@ const NavigationSuper = () => {
                             </Link>
                     </li>
                     <li className="nav-item">
+                        <Link className="navbar-brand" to="/reportes">
+                            Reportes
+                            </Link>
+                    </li>
+                    <li className="nav-item">
                         <Link className="navbar-brand" to="/">
                             Salir
                         </Link>

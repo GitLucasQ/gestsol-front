@@ -21,8 +21,7 @@ export default class dashboard extends Component {
 
     getSolicitudes = async () => {
         const resp = await axios.post('http://localhost:5050/ticket/listTickets', { id_usuario: JSON.parse(sessionStorage.getItem('token')).token })
-        this.setState({ listaConsultas: resp.data.tickets })
-        console.log(resp.data.tickets)
+        this.setState({ listaConsultas: resp.data.tickets })        
     }
 
     getEquipo = async () => {

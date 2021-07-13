@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import $ from 'jquery'
 
 
 const ModalReasignar = ({ nroTicket, nombresPersona, equipo }) => {
@@ -58,7 +57,7 @@ const ModalReasignar = ({ nroTicket, nombresPersona, equipo }) => {
                                         className="btn btn-success"
                                     >
                                         Confirmar
-                                </button>
+                                    </button>
                                 </div>
                             </div>
                         </form>

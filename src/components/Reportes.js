@@ -1,25 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { Pie } from '@ant-design/charts'
+import { Pie, Column } from '@ant-design/charts'
 import NavigationSuper from './NavigationSuper'
 import axios from 'axios'
 
 const Reportes = () => {
 
-    const [listaPersonas, setListaPersonas] = useState([])
-    const [personaSeleccionada, setPersonaSeleccionada] = useState('')
-    const [estadoTicket, setEstadoTicket] = useState('')
     const [ticketPorPersona, setTicketPorPersona] = useState([])
+    const [promedioAbordaje, setPromedioAbordaje] = useState([])
+    const [promedioFinalizacion, setPromedioFinalizacion] = useState([])
 
-    const getListaPersonas = async () => {
-        await axios.post('http://localhost:5050/listarUsuarios',
-            { idUsuario: JSON.parse(sessionStorage.getItem('token')).token })
-            .then((response) => {
-                setListaPersonas(response.data.usuarios)
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-    }
 
     const getTicketsPorPersona = async () => {
         await axios.post('http://localhost:5050/ticket/ticketsPorUsuario',
@@ -37,17 +26,33 @@ const Reportes = () => {
             })
     }
 
-    const handleSelectPersona = e => {
-        setPersonaSeleccionada(e.target.value)
+    const getPromedioAbordaje = async () => {
+        await axios.post('http://localhost:5050/ticket/promedioAbordaje',
+            { id_usuario: JSON.parse(sessionStorage.getItem('token')).token })
+            .then((response) => {
+                setPromedioAbordaje(response.data.promedio)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
 
-    const handleSelectEstado = e => {
-        setEstadoTicket(e.target.value)
+    const getPromedioFinalizacion = async () => {
+        await axios.post('http://localhost:5050/ticket/promedioFinalizacion',
+            { id_usuario: JSON.parse(sessionStorage.getItem('token')).token })
+            .then((response) => {
+                setPromedioFinalizacion(response.data.promedio)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
+
 
     useEffect(() => {
-        //getListaPersonas();
         getTicketsPorPersona();
+        getPromedioAbordaje();
+        getPromedioFinalizacion();
     })
 
 
@@ -61,43 +66,72 @@ const Reportes = () => {
         interactions: [{ type: 'element-active' }],
     }
 
+    var configBarraAbordaje = {
+        data: promedioAbordaje,
+        xField: 'persona',
+        yField: 'promedio_abordaje',
+        label: {
+            position: 'middle',
+            style: {
+                fill: '#FFFFFF',
+                opacity: 0.6,
+            },
+        },
+        xAxis: {
+            label: {
+                autoHide: true,
+                autoRotate: false,
+            },
+        },
+        meta: {
+            type: { alias: 'Persona' },
+            sales: { alias: 'Tiempo de abordaje' },
+        },
+    }
+
+    var configBarraFinalizacion = {
+        data: promedioFinalizacion,
+        xField: 'persona',
+        yField: 'promedio_finalizacion',
+        label: {
+            position: 'middle',
+            style: {
+                fill: '#FFFFFF',
+                opacity: 0.6,
+            },
+        },
+        xAxis: {
+            label: {
+                autoHide: true,
+                autoRotate: false,
+            },
+        },
+        meta: {
+            type: { alias: 'Persona' },
+            sales: { alias: 'Tiempo de finalización' },
+        },
+    }
+
     return (
         <div>
             <NavigationSuper />
 
-            <form>
-                <div className="form-row">
-                    <div className="form-group col-md-6">
-                        <label>Nombre</label>
-                        <select
-                            id="selectPersona"
-                            className="form-control custom-select"
-                            onChange={handleSelectPersona}>
-                            {
-                                listaPersonas.map(persona =>
-                                    <option key={persona.id_usuario} value={persona.id_usuario}>
-                                        {persona.nombres + ' ' + persona.apellidos}
-                                    </option>
-                                )
-                            }
-                        </select>
-                    </div>
-                    <div className="form-group col-md-6">
-                        <label>Estado</label>
-                        <select
-                            id="selectEstado"
-                            className="form-control custom-select"
-                            onChange={handleSelectEstado}>
-                            <option value="">Todos</option>
-                            <option value="abierto">Abiertos</option>
-                            <option value="cerrado">Cerrados</option>
-                        </select>
-                    </div>
-                </div>
-                <div className="row">
+            <div className="row">
+                <div className="col">
+                    <h5>Tickets por persona</h5>
                     <Pie {...config} />
                 </div>
-            </form>
+                <div className="col">
+                    <h5>Tiempo promedio de abordaje</h5>
+                    <Column {...configBarraAbordaje} />
+                </div>
+            </div>
+            <div className="row">
+                <div className="col">
+                    <h5>Tiempo promedio de finalización</h5>
+                    <Column {...configBarraFinalizacion} />
+                </div>
+            </div>
         </div>
 
     )

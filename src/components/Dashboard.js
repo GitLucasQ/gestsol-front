@@ -67,15 +67,15 @@ export default class dashboard extends Component {
                                             <td>{ticket.estado}</td>
                                             <td>{ticket.nombres}</td>
                                             <td>{ticket.nombre_usuario_asignado}</td>
-                                            <td>{ticket.fecha_registro} {ticket.hora_inicio}</td>
+                                            <td>{new Date(ticket.fecha_registro).toLocaleDateString()} {new Date(ticket.hora_inicio).toLocaleTimeString()}</td>
                                             <td>
-                                                <button
+                                                {/**<button
                                                     className="btn btn-info btn-sm"
                                                     data-toggle="modal"
                                                     data-target="#modalDetalle"
                                                     onClick={() => this.setTicketSeleccionado(ticket)}>
                                                     Detalle
-                                                </button>
+                                                </button>**/}
 
                                                 <button
                                                     className="btn btn-success btn-sm"

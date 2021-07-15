@@ -46,6 +46,7 @@ export default class RegisterUser extends Component {
         ],
         nombres: '',
         apellidos: '',
+        clave: '',
         area: 'Sistemas',
         tipo: 'Técnico',
         listaUsuarios: []
@@ -76,7 +77,8 @@ export default class RegisterUser extends Component {
                 nombres: this.state.nombres[0],
                 apellidos: this.state.apellidos[0],
                 area: this.state.area,
-                tipo: this.state.tipo
+                tipo: this.state.tipo,
+                clave: this.state.clave                
             })
             .then((response) => {
                 this.notifySuccess('Registro exitoso')
@@ -151,6 +153,19 @@ export default class RegisterUser extends Component {
                                                 )
                                             }
                                         </select>
+                                    </div>
+                                </div>
+                                <div className="form-row">
+                                    <div className="form-group col">
+                                        <label>Contraseña</label>
+                                        <input
+                                            type="password"
+                                            name="clave"
+                                            className="form-control"
+                                            value={this.state.clave}
+                                            placeholder="Ingrese clave"
+                                            onChange={this.inputHandler}
+                                            required />
                                     </div>
                                 </div>
 

@@ -53,7 +53,7 @@ const Reportes = () => {
         getTicketsPorPersona();
         getPromedioAbordaje();
         getPromedioFinalizacion();
-    })
+    }, [])
 
 
     var config = {
@@ -115,21 +115,23 @@ const Reportes = () => {
     return (
         <div>
             <NavigationSuper />
-
-            <div className="row">
-                <div className="col">
-                    <h5>Tickets por persona</h5>
-                    <Pie {...config} />
+            <div className="container">
+                <div className="row m-4">
+                    <div className="col">
+                        <h5>Tiempo promedio de finalización</h5>
+                        <Column {...configBarraFinalizacion} />
+                    </div>
+                    <div className="col">
+                        <h5>Tiempo promedio de abordaje</h5>
+                        <Column {...configBarraAbordaje} />
+                    </div>
                 </div>
-                <div className="col">
-                    <h5>Tiempo promedio de abordaje</h5>
-                    <Column {...configBarraAbordaje} />
-                </div>
-            </div>
-            <div className="row">
-                <div className="col">
-                    <h5>Tiempo promedio de finalización</h5>
-                    <Column {...configBarraFinalizacion} />
+                <br />
+                <div className="row m-8">
+                    <div className="col">
+                        <h5>Tickets por persona</h5>
+                        <Pie {...config} />
+                    </div>
                 </div>
             </div>
         </div>

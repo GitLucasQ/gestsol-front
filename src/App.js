@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Login from './components/Login'
 import Asesor from './components/Asesor'
+import ListaTickets from './components/ListaTickets';
 import PageNotFound from './components/PageNotFound';
 import Dashboard from './components/Dashboard';
 import Reportes from './components/Reportes'
@@ -27,8 +28,8 @@ function App() {
             <Route exact path="/">
               <Asesor />
             </Route>
-            <Route exact path="/asesor">
-              <Asesor />
+            <Route exact path="/misTickets">
+              <ListaTickets />
             </Route>
             <Route component={PageNotFound} />
           </Switch>

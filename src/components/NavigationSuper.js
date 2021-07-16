@@ -16,7 +16,8 @@ const NavigationSuper = () => {
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark justify-content-end" id="navsuper">
-            <Link className="navbar-brand" to="/">
+            <Link className="navbar-brand mr-2" to="/">
+                <i className="fa fa-fw fa-home mr-2"></i>
                 Ver solicitudes
             </Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,13 +25,15 @@ const NavigationSuper = () => {
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
-                    <li className="nav-item">
+                    <li className="nav-item ml-2 mr-2">
                         <Link className="navbar-brand" to="/registroUsuario">
+                            <i className="fa fa-fw fa-users mr-2"></i>
                             Registrar usuario
                         </Link>
                     </li>
-                    <li className="nav-item">
+                    <li className="nav-item  mr-2">
                         <Link className="navbar-brand" to="/reportes">
+                            <i className="fa fa-fw fa-area-chart mr-2"></i>
                             Reportes
                         </Link>
                     </li>

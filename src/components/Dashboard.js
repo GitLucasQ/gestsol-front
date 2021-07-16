@@ -75,8 +75,7 @@ export default class dashboard extends Component {
                                                     data-target="#modalDetalle"
                                                     onClick={() => this.setTicketSeleccionado(ticket)}>
                                                     Detalle
-                                                </button>**/}
-
+                                                </button>**/}                                            
                                                 <button
                                                     className="btn btn-success btn-sm"
                                                     data-toggle="modal"

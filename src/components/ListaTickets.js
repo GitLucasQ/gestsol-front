@@ -21,7 +21,7 @@ const ListaTickets = () => {
     }
 
     useEffect(() => {
-        getListaTickets();        
+        getListaTickets();
     }, [])
 
     return (
@@ -36,22 +36,18 @@ const ListaTickets = () => {
                                 <th>ESTADO</th>
                                 <th>CLIENTE</th>
                                 <th>DOCUMENTO</th>
-                                <th>TELÉFONO</th>
-                                <th>EMAIL</th>
                                 <th>ÁREA</th>
                                 <th>DESCRIPCIÓN</th>
                             </tr>
                         </thead>
                         <tbody>
                             {
-                                listaTickets.map(ticket => 
+                                listaTickets.map(ticket =>
                                     <tr key={ticket.nro_ticket}>
                                         <td>{ticket.nro_ticket}</td>
                                         <td>{ticket.estado}</td>
                                         <td>{ticket.nombre_cliente}</td>
                                         <td>{ticket.nro_doc}</td>
-                                        <td>{ticket.telefono}</td>
-                                        <td>{ticket.email}</td>
                                         <td>{ticket.area}</td>
                                         <td>{ticket.descripcion}</td>
                                     </tr>

@@ -100,6 +100,9 @@ const Reportes = () => {
                 opacity: 0.6,
             },
         },
+        columnStyle: {
+            fill: '#4CAF50'
+        },
         xAxis: {
             label: {
                 autoHide: true,
@@ -118,14 +121,15 @@ const Reportes = () => {
             <div className="container">
                 <div className="row m-4">
                     <div className="col">
-                        <h5>Tiempo promedio de finalización</h5>
+                        <h5>Tiempo promedio de finalización (min)</h5>
                         <Column {...configBarraFinalizacion} />
                     </div>
                     <div className="col">
-                        <h5>Tiempo promedio de abordaje</h5>
+                        <h5>Tiempo promedio de abordaje (min)</h5>
                         <Column {...configBarraAbordaje} />
                     </div>
                 </div>
+                <br />
                 <br />
                 <div className="row m-8">
                     <div className="col">
